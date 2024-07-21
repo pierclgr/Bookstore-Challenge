@@ -15,17 +15,17 @@
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #ccc;
+    color: #0c0c0c;
     cursor: pointer;
     font-size: 16px;
 }
 
 .book-detail-page button:hover {
-    background-color: #0056b3;
+    background-color: #7f7f7f;
 }
 
-.edit-button {
+.book-detail-page .edit-button {
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
@@ -36,6 +36,15 @@
     display: inline-block;
 }
 
-.edit-button:hover {
+.book-detail-page .edit-button:hover {
     background-color: #0056b3;
+}
+
+.book-detail-page .delete-button {
+    background-color: #ff0000;
+    color: #fff
+}
+
+.book-detail-page .delete-button:hover {
+    background-color: #b30000;
 }

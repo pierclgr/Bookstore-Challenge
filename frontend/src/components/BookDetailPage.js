@@ -1,12 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { deleteBook } from '../api';
 import { fetchBookById } from '../api';
 import './BookDetailPage.css';
+import ConfirmationDialog from './ConfirmationDialog';
 
 const BookDetailPage = () => {
     const { id } = useParams();
     const [book, setBook] = useState(null);
     const navigate = useNavigate();
+    const [isDialogOpen, setDialogOpen] = useState(false);
+
+    const handleDelete = () => {
+        setDialogOpen(true);
+    };
+
+    const handleConfirm = () => {
+        deleteBook(id);
+        setDialogOpen(false);
+        handleBackClick();
+    };
+
+    const handleClose = () => {
+        setDialogOpen(false);
+    };
 
     useEffect(() => {
         fetchBookById(id)
@@ -25,7 +42,7 @@ const BookDetailPage = () => {
     };
 
     const handleBackClick = () => {
-        navigate(-1);
+        navigate("/");
     };
 
     if (!book) {
@@ -34,6 +51,12 @@ const BookDetailPage = () => {
 
     return (
         <div className="book-detail-page">
+            <ConfirmationDialog
+                isOpen={isDialogOpen}
+                onClose={handleClose}
+                onConfirm={handleConfirm}
+                message="Are you sure you want to delete this item?"
+            />
             <h1>{book.title}</h1>
             <p><strong>Author:</strong> {book.author}</p>
             <p><strong>Publication Year:</strong> {book.publication_year}</p>
@@ -43,6 +66,7 @@ const BookDetailPage = () => {
             <Link to={`/edit/${id}`}>
                 <button className="edit-button">Edit</button>
             </Link>
+            <button className="delete-button" onClick={handleDelete}>Delete</button>
         </div>
     );
 };
