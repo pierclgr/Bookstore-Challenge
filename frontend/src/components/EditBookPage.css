@@ -1,0 +1,34 @@
+.edit-book-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.edit-book-page h1 {
+    margin-bottom: 20px;
+}
+
+.edit-book-page label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.edit-book-page input,
+.edit-book-page textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 15px 0;
+}
+
+.edit-book-page button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-book-page button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,41 @@
+.book-detail-page {
+    padding: 20px;
+}
+
+.book-detail-page h1 {
+    margin-bottom: 10px;
+}
+
+.book-detail-page p {
+    margin-bottom: 10px;
+}
+
+.book-detail-page button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.book-detail-page button:hover {
+    background-color: #0056b3;
+}
+
+.edit-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
