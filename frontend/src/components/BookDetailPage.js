@@ -6,23 +6,12 @@ import './BookDetailPage.css';
 const BookDetailPage = () => {
     const { id } = useParams();
     const [book, setBook] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const getBook = async () => {
-            try {
-                const response = await fetchBookById(id);
-                setBook(response.data);
-                setLoading(false);
-            } catch (err) {
-                setError(err.message);
-                setLoading(false);
-            }
-        };
-
-        getBook();
+        fetchBookById(id)
+            .then(data => setBook(data))
+            .catch(error => console.error('Error fetching book details:', error));
     }, [id]);
 
     const formatPrice = (price) => {
@@ -39,10 +28,9 @@ const BookDetailPage = () => {
         navigate(-1);
     };
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
-
-    if (!book) return <p>Book not found</p>;
+    if (!book) {
+        return <div>Book not found!</div>;
+    }
 
     return (
         <div className="book-detail-page">

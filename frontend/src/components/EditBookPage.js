@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchBookById, updateBook } from '../api';
-import './EditBookPage.css'; // Create this CSS file for styling
+import './EditBookPage.css';
 
 const EditBookPage = () => {
     const { id } = useParams();
@@ -9,26 +9,15 @@ const EditBookPage = () => {
     const [book, setBook] = useState({
         title: '',
         author: '',
-        year: '',
+        publication_year: '',
         price: '',
         description: '',
     });
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const getBook = async () => {
-            try {
-                const response = await fetchBookById(id);
-                setBook(response.data);
-                setLoading(false);
-            } catch (err) {
-                setError(err.message);
-                setLoading(false);
-            }
-        };
-
-        getBook();
+        fetchBookById(id)
+            .then(data => setBook(data))
+            .catch(error => console.error('Error fetching book details:', error));
     }, [id]);
 
     const handleChange = (e) => {
@@ -42,14 +31,11 @@ const EditBookPage = () => {
         e.preventDefault();
         try {
             await updateBook(id, book);
-            navigate(`/books/${id}`);
+            navigate(`/book/${id}`);
         } catch (err) {
-            setError(err.message);
+            console.error('Error updating book details:', err)
         }
     };
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
 
     return (
         <div className="edit-book-page">
@@ -65,7 +51,7 @@ const EditBookPage = () => {
                 </label>
                 <label>
                     Year:
-                    <input type="number" name="year" value={book.year} onChange={handleChange} required />
+                    <input type="number" name="publication_year" value={book.publication_year} onChange={handleChange} required />
                 </label>
                 <label>
                     Price:
@@ -73,7 +59,7 @@ const EditBookPage = () => {
                 </label>
                 <label>
                     Description:
-                    <textarea name="description" value={book.description} onChange={handleChange} required />
+                    <textarea name="description" value={book.description || ''} onChange={handleChange} required />
                 </label>
                 <button type="submit">Update Book</button>
             </form>
