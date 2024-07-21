@@ -2,6 +2,10 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:8000/api/books/';
 
+export const fetchBookByContex = (context = "") => {
+    return axios.get
+}
+
 export const fetchBooks = (filters = {}, minYear = '', maxYear = '', minPrice='', maxPrice='', sortOrder = 'title') => {
     return axios.get(API_URL, {
         params: {

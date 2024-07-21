@@ -4,6 +4,7 @@ import BookList from './components/BookList';
 import BookDetailPage from './components/BookDetailPage';
 import AddBookPage from './components/AddBookPage';
 import EditBookPage from './components/EditBookPage';
+import MagicSuggestionPage from './components/MagicSuggestionPage';
 import './App.css';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
                     <ul>
                         <li><a href="/">Library</a></li>
                         <li><a href="/add">Add Book</a></li>
+                        <li><a href="/magic-suggestion">Magic Suggestion</a></li>
                     </ul>
                 </nav>
                 <Routes>
@@ -21,6 +23,7 @@ const App = () => {
                     <Route path="/book/:id" element={<BookDetailPage />} />
                     <Route path="/add" element={<AddBookPage />} />
                     <Route path="/edit/:id" element={<EditBookPage />} />
+                    <Route path="/magic-suggestion" element={<MagicSuggestionPage />} />
                 </Routes>
             </div>
         </Router>
