@@ -80,7 +80,7 @@ const AddBookPage = () => {
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
-                <button type="submit">Add Book</button>
+                <button class="add-book" type="submit">Add Book</button>
             </form>
         </div>
     );

@@ -100,7 +100,7 @@ const MagicSuggestionPage = () => {
                 cols="50"
                 required
             />
-            <button onClick={handleSearch} type="submit">Suggest me</button>
+            <button class="suggest-button" onClick={handleSearch} type="submit">Suggest me</button>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
         </div>

@@ -12,10 +12,21 @@ textarea {
     max-width: 100%;
 }
 
-button {
+.suggest-button {
+    display: block;
     padding: 10px;
     width: 500px;
     margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.suggest-button:hover {
+    background-color: #0056b3;
 }
 
 ul {

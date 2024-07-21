@@ -24,7 +24,7 @@
     box-sizing: border-box;
 }
 
-button {
+.add-book {
     display: block;
     width: 100%;
     padding: 10px;
@@ -35,7 +35,7 @@ button {
     border-radius: 5px;
 }
 
-button:hover {
+.add-book:hover {
     background-color: #0056b3;
 }
 
