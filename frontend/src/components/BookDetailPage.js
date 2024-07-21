@@ -6,7 +6,34 @@ import './BookDetailPage.css';
 import ConfirmationDialog from './ConfirmationDialog';
 
 const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
-const endpoint = 'https://api.openai.com/v1/images/generations'; 
+const imageEndpoint = 'https://api.openai.com/v1/images/generations'; 
+const textEndpoint = 'https://api.openai.com/v1/chat/completions';
+
+async function getChatGPTResponse(prompt) {
+    try {
+        const response = await fetch(textEndpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${API_KEY}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                model: 'gpt-4o-mini',
+                messages: [{ role: 'user', content: prompt }],
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.choices[0].message.content;
+    } catch (error) {
+        console.error('Error performing search:', error);
+        return null;
+    }
+}
 
 const BookDetailPage = () => {
     const { id } = useParams();
@@ -53,17 +80,23 @@ const BookDetailPage = () => {
     };
 
     const generateBookCover = async (bookData) => {
-        const prompt = `Create a book cover for a book titled "${bookData.title}" by author ${bookData.author}. The book has the following description: ${bookData.description}. The book was published in ${bookData.publication_year}. Include elements that reflect the theme of the book and make it visually appealing. Use your prior knowlege about the book and the information given here to generate the book cover. Generate only the front page and put the title and the author.`;
+        var textPrompt = "Generate a prompt to generate an image representing the following book. Please use your prior knowlege about the opera and the information given here. Also take the main and most important characters and include them in the description. Make it not so long but include details that reflect the theme of the opera. Also specify to not inlcude text in the generated image."
+        textPrompt += `Title: ${bookData.title}\nAuthor: ${bookData.author}\nYear: ${bookData.publication_year}\n`
+        if (bookData.description !== "" && bookData.description !== null) {
+            textPrompt += `Description: ${bookData.description}.`
+        }
+        var imageDescription = await getChatGPTResponse(textPrompt);
+        console.log(imageDescription);
 
         try {
-            const response = await fetch(endpoint, {
+            const response = await fetch(imageEndpoint, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${API_KEY}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    prompt: prompt,
+                    prompt: imageDescription,
                     n: 1,
                     size: '512x512'
                 }),
@@ -103,7 +136,7 @@ const BookDetailPage = () => {
                     <img src={bookCover} alt={`Cover for ${book.title}`} />
                 </div>
             )}
-            <p id="cover_id">Creating cover...</p>
+            <p id="cover_id">Creating image...</p>
             <p><strong>Author:</strong> {book.author}</p>
             <p><strong>Publication Year:</strong> {book.publication_year}</p>
             <p><strong>Price:</strong> ${formatPrice(book.price)}</p>
