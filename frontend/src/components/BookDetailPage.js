@@ -86,7 +86,6 @@ const BookDetailPage = () => {
             textPrompt += `Description: ${bookData.description}.`
         }
         var imageDescription = await getChatGPTResponse(textPrompt);
-        console.log(imageDescription);
 
         try {
             const response = await fetch(imageEndpoint, {
@@ -108,7 +107,6 @@ const BookDetailPage = () => {
     
             const data = await response.json();
             const imageUrl = data.data[0].url;
-            console.log('Generated Image URL:', imageUrl);
             
             setBookCover(imageUrl);
             document.getElementById("cover_id").textContent = "";
