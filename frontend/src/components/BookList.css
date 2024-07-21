@@ -31,3 +31,40 @@
     text-decoration: underline;
 }
 
+.book-list-container {
+    padding: 20px;
+}
+
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.book-table th, .book-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.book-table th {
+    background-color: #f2f2f2;
+}
+
+.filter-form {
+    margin-bottom: 20px;
+}
+
+.filter-form label {
+    margin-right: 10px;
+}
+
+.filter-form input {
+    margin-left: 5px;
+    margin-right: 20px;
+}
+
+.filter-form .filter-button {
+    width: 60px;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: inline-block;
+}

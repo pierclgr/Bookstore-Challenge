@@ -2,10 +2,14 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:8000/api/books/';
 
-export const fetchBooks = (filter = '', sortOrder = 'title') => {
+export const fetchBooks = (filters = {}, minYear = '', maxYear = '', minPrice='', maxPrice='', sortOrder = 'title') => {
     return axios.get(API_URL, {
         params: {
-            title: filter,
+            ...filters,
+            min_year: minYear,
+            max_year: maxYear,
+            min_price: minPrice,
+            max_price: maxPrice,
             ordering: sortOrder,
         }
     }).then(response => response.data);
