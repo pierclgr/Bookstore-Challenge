@@ -53,7 +53,7 @@ const BookDetailPage = () => {
     };
 
     const generateBookCover = async (bookData) => {
-        const prompt = `Create a book cover for a book titled "${bookData.title}" by ${bookData.author}. The book has the following description: ${bookData.description}. The book was published in ${bookData.publication_year}. Include elements that reflect the theme of the book and make it visually appealing. Use your prior knowlege about the book and the information given here. Generate only the front page and put the title and the author.`;
+        const prompt = `Create a book cover for a book titled "${bookData.title}" by author ${bookData.author}. The book has the following description: ${bookData.description}. The book was published in ${bookData.publication_year}. Include elements that reflect the theme of the book and make it visually appealing. Use your prior knowlege about the book and the information given here to generate the book cover. Generate only the front page and put the title and the author.`;
 
         try {
             const response = await fetch(endpoint, {
@@ -63,10 +63,9 @@ const BookDetailPage = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    model: "dall-e-3",
                     prompt: prompt,
                     n: 1,
-                    size: '256x256'
+                    size: '512x512'
                 }),
             });
 
