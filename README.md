@@ -8,7 +8,7 @@ To execute this app, you need to have _git_ and _Docker_ installed on your machi
 3. Create a file `.env` and put `REACT_APP_OPENAI_API_KEY=<your-openai-apikey>` into it
 4. Replace `<your-openai-apikey>` with your OpenAI APIKey, generated from OpenAI website, by heading to [this link](https://platform.openai.com/api-keys) and clicking on "Create new secret key" at the top of the page. Make sure to grant 'all' permissions. **This is necessary in order to enable AI functions**.
 5. Move to the repository directory and run `docker-compose up --build`; this will take a while
-6. When the build finishes, open [localhost:3000](localhost:3000) on your browser to access the page.
+6. When the build finishes, open [localhost:3000](http://localhost:3000) on your browser to access the page.
 
 ## Quick guide
 You have the access to three pages:
