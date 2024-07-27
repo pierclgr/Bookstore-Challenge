@@ -13,6 +13,6 @@ To execute this app, you need to have _git_ and _Docker_ installed on your machi
 ## Quick guide
 You have the access to three pages:
 1. The home page contains the list of books in the library; you can filter/order books by many criterias. The list will be empty at the beginning. By clicking on the book, you can also access its infos.
-2. The "Add book" page allows you to add a book to the library.
-3. The "Magic suggestion" page uses OpenAI's ChatGPT to suggest a book based on a natural language query. Just write whatever you like and you want to read in natural language in the box and the app will suggest the best book for you.
+2. The **Add book** page allows you to add a book to the library.
+3. The **Magic suggestion** page uses OpenAI's ChatGPT to suggest a book based on a natural language query. Just write whatever you like and you want to read in natural language in the box and the app will suggest the best book for you.
     
