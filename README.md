@@ -1,4 +1,4 @@
-# Bookstore App
+# Bookstore App
 
 ## Setup
 To execute this app, you need to have _git_ and _Docker_ installed on your machine. Make sure to have them installed. Then, execute the following steps:
